@@ -51,8 +51,12 @@ const isVue    = hasDep('vue', '@vue/core');
 const isAstro  = hasDep('astro');
 
 // ── Import line + uniqueness marker ─────────────────────────
-const IMPORT    = "import 'localhost-to-figma';";
-const MARKER    = 'localhost-to-figma';   // presence check — works for require() too
+// Dev-guard: process.env.NODE_ENV is defined by every major bundler (Vite,
+// webpack, Next.js, Remix). It gets statically replaced and the dead branch
+// is tree-shaken away in production builds — zero cost in prod.
+// `void` suppresses the floating-promise TS/eslint warning.
+const IMPORT = "if (process.env.NODE_ENV === 'development') void import('localhost-to-figma');";
+const MARKER = 'localhost-to-figma';   // presence check — works for require() too
 
 // ── Entry file candidate lists ───────────────────────────────
 const GENERIC = [
@@ -153,7 +157,7 @@ function handleNext() {
   console.log(`${PREFIX}   Auto-insert not safe for server components.`);
   console.log(`${PREFIX}   Add this to a ${b("'use client'")} component (e.g. your root layout):`);
   console.log();
-  console.log(`   ${d("// src/app/layout.tsx (at the top, after 'use client')")}`);
+  console.log(`   ${d("// src/app/layout.tsx — after 'use client'")}`);
   console.log(`   ${g(IMPORT)}`);
   console.log();
 }
