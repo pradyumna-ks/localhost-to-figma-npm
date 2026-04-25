@@ -1,12 +1,16 @@
 {
   "name": "localhost-to-figma",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Capture shim for the Localhost to Figma Figma plugin — lets the plugin read your running app's DOM and paste it as editable Figma layers.",
   "main": "figma-capture.js",
   "module": "figma-capture.js",
   "sideEffects": true,
+  "scripts": {
+    "postinstall": "node postinstall.js"
+  },
   "files": [
     "figma-capture.js",
+    "postinstall.js",
     "README.md",
     "LICENSE"
   ],
