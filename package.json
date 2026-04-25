@@ -23,7 +23,7 @@
   "author": "Pradyumna KS",
   "repository": {
     "type": "git",
-    "url": "https://github.com/pradyumna-ks/localhost-to-figma-npm.git"
+    "url": "git+https://github.com/pradyumna-ks/localhost-to-figma-npm.git"
   },
   "bugs": {
     "url": "https://github.com/pradyumna-ks/localhost-to-figma/issues"
